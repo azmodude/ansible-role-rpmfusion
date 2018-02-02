@@ -1,0 +1,20 @@
+---
+- name: Install EPEL RPM
+  yum:
+    name: "http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8-noarch.rpm"
+    state: present
+  when: ansible_distribution_major_release == '6'
+- name: Install EPEL RPM
+  yum:
+    name: "http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-10-noarch.rpm"
+    state: present
+  when: ansible_distribution_major_release == '7'
+- name: Install RPMFusion Free RPM
+  yum:
+    name: "https://download1.rpmfusion.org/free/el/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm"
+    state: present
+- name: Install RPMFusion Non-Free RPM
+  dnf:
+    name: "https://download1.rpmfusion.org/free/el/rpmfusion-nonfree-release-{{ansible_major_version}}.noarch.rpm"
+    state: present
+  when: non_free is True
