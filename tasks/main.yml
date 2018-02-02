@@ -1,8 +1,8 @@
 ---
 # tasks file for ansible-role-rpmfusion
-- include_tasks:
-    name: fedora.yml
+- include_tasks: fedora.yml
   when: ansible_distribution == 'Fedora'
-- include_tasks:
-    name: rhel.yml
-  when: ansible_distributon in ('Red Hat Enterprise Linux', 'CentOS')
+  become: True
+- include_tasks: rhel.yml
+  when: ansible_distribution in ('Red Hat Enterprise Linux', 'CentOS')
+  become: True

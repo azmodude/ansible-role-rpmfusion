@@ -15,6 +15,6 @@
     state: present
 - name: Install RPMFusion Non-Free RPM
   dnf:
-    name: "https://download1.rpmfusion.org/free/el/rpmfusion-nonfree-release-{{ansible_major_version}}.noarch.rpm"
+    name: "https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-{{ansible_distribution_major_version}}.noarch.rpm"
     state: present
-  when: non_free is True
+  when: non_free
