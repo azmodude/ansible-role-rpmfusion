@@ -1,10 +1,13 @@
 ---
-- name: Install RPMFusion Free RPM
-  dnf:
-    name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm"
-    state: present
-- name: Install RPMFusion Non-Free RPM
-  dnf:
-    name: "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ansible_distribution_major_version}}.noarch.rpm"
-    state: present
-  when: non_free 
+- name: Install RPMFusion RPMs (Fedora)
+  block:
+    - name: Install RPMFusion Free RPM
+      dnf:
+        name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm"
+        state: present
+    - name: Install RPMFusion Non-Free RPM
+      dnf:
+        name: "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ansible_distribution_major_version}}.noarch.rpm"
+        state: present
+      when: non_free
+  become: true
