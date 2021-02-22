@@ -1,6 +1,14 @@
 ---
 - name: Install RPMFusion RPMs (RHEL)
   block:
+     - name: Get RPMFusion Free Key
+      rpm_key:
+        state: present
+        key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-el-8
+    - name: Get RPMFusion NonFree Key
+      rpm_key:
+        state: present
+        key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-el-8
     - name: Install EPEL RPM
       yum:
         name: "http://download.fedoraproject.org/pub/epel/epel-release-latest-{{ansible_distribution_major_release}}.noarch.rpm"

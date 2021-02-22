@@ -1,6 +1,14 @@
 ---
 - name: Install RPMFusion RPMs (Fedora)
   block:
+    - name: Get RPMFusion Free Key
+      rpm_key:
+        state: present
+        key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020
+    - name: Get RPMFusion NonFree Key
+      rpm_key:
+        state: present
+        key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
     - name: Install RPMFusion Free RPM
       dnf:
         name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm"
